@@ -1,35 +1,24 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import EventCard from './assets/EventCard'
+
+
+
+const events = [
+  { title: "Lunsj i kantina", location: "Element på Realfagsbygget", date: "20.02.2025", type: "Mat" },
+  { title: "Quiz", location: "Bror Bar", date: "25.02.2025", type: "Sosialt" },
+  { title: "Spinning", location: "Sit Portalen", date: "26.02.2025", type: "Trening" },
+];
+
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div style={{ display: "flex", gap: "20px", overflowX: "auto", padding: "20px" }}>
+      {events.map((event, index) => (
+        <EventCard key={index} title={event.title} location={event.location} date={event.date} type={event.type} />
+      ))}
+    </div>
+  );
 }
+
 
 export default App
