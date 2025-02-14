@@ -1,5 +1,7 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
+
+//det er denne siden som er selve elementet, event entities må hentes fra firebase gjennom eventlist
 const events = [
     { id: 1, title: "Lunsj i kantina", location: "Element på Realfagsbygget", date: "20.02.2025", type: "Mat", description: "Beskrivelse av event", organizer: "ansvarlig brukers navn" },
     { id: 2, title: "Quiz", location: "Bror Bar", date: "25.02.2025", type: "Sosialt", description: "Beskrivelse av event", organizer: "ansvarlig brukers navn"},
@@ -9,6 +11,7 @@ const events = [
 function EventPage() {
   const { id } = useParams();
   const event = events.find((e) => e.id === Number(id));
+  const navigate = useNavigate();
 
   if (!event) return <h2>Arrangement ikke funnet</h2>;
 
@@ -21,7 +24,14 @@ function EventPage() {
       <p><strong>Dato:</strong> {event.date}</p>
       <p><strong>Beskrivelse:</strong> {event.description}</p>
       <p><strong>Arrangør:</strong> {event.organizer}</p>
+      
+      <button
+        onClick={() => navigate(-1)}
+        style={{ padding: "10px 20px", background: "gray", color: "white", border: "none", borderRadius: "5px", cursor: "pointer", marginTop: "20px" }}>
+        Gå tilbake
+      </button>
     </div>
+    
   );
 }
 
